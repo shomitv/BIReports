@@ -23,9 +23,21 @@ stage('Move BI object to cataloag server')
 {
 steps
 {
-	 bat """
-         curl --output output.gzip -w """%{http_code}""" --silent --header "Content-Type:application/xml" -d @Paylod.xml https://fa-etaj-saasfademo1.ds-fa.oraclepdemos.com:443/xmlpserver/services/v2/CatalogService
-      """
+script{
+
+     
+
+      status_code =sh(
+      returnStdout: true, 
+      script: "curl --output output.gzip -w '%{http_code}' --silent --header "Content-Type:application/xml" -d @Paylod.xml https://fa-etaj-saasfademo1.ds-fa.oraclepdemos.com:443/xmlpserver/services/v2/CatalogService"
+    ).trim();
+                       
+      echo "HTTP response status code: ${status_code}"
+
+      if (status_code != "200") {
+          error('URL status different of 200. Exiting script.Plese refer output.gzip')
+      } 
+}
 
 
 }
