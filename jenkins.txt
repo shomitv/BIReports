@@ -1,0 +1,45 @@
+pipeline
+{
+agent any
+stages
+{
+stage('Generate payload')
+{
+steps
+{
+    script{
+
+      cmd = """
+         java Abc "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
+      """
+
+      sh(script: cmd, returnStdout: true)
+                       
+    
+}
+
+}
+}
+stage('Move BI object to cataloag server') 
+{
+steps
+{
+	 script{
+
+      cmd = """
+         curl --output output.gzip -w "%{http_code}" --silent --header "Content-Type:application/xml" -d @Paylod.xml https://fa-etaj-saasfademo1.ds-fa.oraclepdemos.com:443/xmlpserver/services/v2/CatalogService
+      """
+
+      status_code = sh(script: cmd, returnStdout: true).trim()
+                       
+      echo "HTTP response status code: ${status_code}"
+
+      if (status_code != "200") {
+          error('URL status different of 200. Exiting script.Plese refer output.gzip')
+      } 
+}
+}
+}
+
+}
+}
