@@ -7,16 +7,15 @@ stage('Generate payload')
 {
 steps
 {
-    script{
+   
 
-      cmd = """
+      bat """
          java Abc "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
       """
 
-      sh(script: cmd, returnStdout: true)
                        
     
-}
+
 
 }
 }
