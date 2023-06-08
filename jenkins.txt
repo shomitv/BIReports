@@ -10,7 +10,7 @@ steps
    
 
       bat """
-         java Abc "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
+         java EncodeToBase64 "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
       """
 }
 }
