@@ -11,7 +11,7 @@ steps
 
       bat """
          java EncodeToBase64 "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
-      """
+      """ 
 }
 }
 stage('Move BI object to cataloag server') 
