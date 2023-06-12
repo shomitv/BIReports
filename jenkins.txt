@@ -24,13 +24,12 @@ steps
                              parameters: [password(defaultValue: '',
                                           description: '',
                                           name: 'Pathtodeploy')]
+                                          bat(returnStdout: true, script: " java EncodeToBase64  ${env.REPORTNAME} Payload.xml ${env.PATHTODEPLOY} ${env.USERNAME} ${env.PASSWORD} ")
 
         }
    
 
-      bat """
-         java EncodeToBase64  env.REPORTNAME['Reportname'] Payload.xml env.PATHTODEPLOY['Pathtodeploy'] env.USERNAME['Username'] env.PASSWORD['Password'] 
-      """ 
+    
 }
 }
 stage('Move BI object to cataloag server') 
