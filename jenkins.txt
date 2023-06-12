@@ -21,8 +21,8 @@ steps
                                           description: '',
                                           name: 'Reportname')]
 	  env.PATHTODEPLOY = input message: 'Please enter the report path',
-                             parameters: [string(defaultValue: '',
-                                          description: '/Custom/Shomit',
+                             parameters: [string(defaultValue: '/Custom/Shomit',
+                                          description: '',
                                           name: 'Pathtodeploy')]
                                           bat(returnStdout: true, script: " java EncodeToBase64  ${env.REPORTNAME} Payload.xml ${env.PATHTODEPLOY} ${env.USERNAME} \"${env.PASSWORD}\" ")
 
