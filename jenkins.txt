@@ -7,10 +7,29 @@ stage('Generate payload')
 {
 steps
 {
+  script {
+          env.USERNAME = input message: 'Please enter the username',
+                             parameters: [string(defaultValue: '',
+                                          description: '',
+                                          name: 'Username')]
+          env.PASSWORD = input message: 'Please enter the password',
+                             parameters: [password(defaultValue: '',
+                                          description: '',
+                                          name: 'Password')]
+ 	  env.REPORTNAME = input message: 'Please enter the report to be migrated
+                             parameters: [password(defaultValue: '',
+                                          description: '',
+                                          name: 'Reportname')]
+	  env.PATHTODEPLOY = input message: 'Please enter the report path 
+                             parameters: [password(defaultValue: '',
+                                          description: '',
+                                          name: 'Pathtodeploy')]
+
+        }
    
 
       bat """
-         java EncodeToBase64 "C:\\Users\\shoverma\\Downloads\\ss.xdmz" Payload.xml
+         java EncodeToBase64  env.REPORTNAME['Reportname'] Payload.xml env.PATHTODEPLOY['Pathtodeploy'] env.USERNAME['Username'] env.PASSWORD['Password'] 
       """ 
 }
 }
