@@ -24,7 +24,7 @@ steps
                              parameters: [string(defaultValue: '',
                                           description: '',
                                           name: 'Pathtodeploy')]
-                                          bat(returnStdout: true, script: ' java EncodeToBase64  ${env.REPORTNAME} Payload.xml ${env.PATHTODEPLOY} ${env.USERNAME} "${env.PASSWORD}"')
+                                          bat(returnStdout: true, script: " java EncodeToBase64  ${env.REPORTNAME} Payload.xml ${env.PATHTODEPLOY} ${env.USERNAME} \"${env.PASSWORD}\" ")
 
         }
    
